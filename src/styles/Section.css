@@ -1,0 +1,25 @@
+.Section-lolomo-row {
+  margin-top: -10rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 800;
+}
+
+.Section-lolomo-row-title {
+  padding-left: 3.5rem;
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.Section-lolomo-row-movies {
+  display: flex;
+  gap: 10px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  padding: 6.5rem 0 11rem 3.5rem;
+  margin-top: -7rem;
+  z-index: 1;
+
+  -webkit-scrollbar: none;
+}
