@@ -1,54 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ReactPlayer from "react-player";
 import "../styles/Feature.css";
 
 const Feature = () => {
+  const IMG_BASE_URL = "https://image.tmdb.org/t/p/original";
+  const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    const getAMovie = async () => {
+      const { data } = await axios.get(`/.netlify/functions/getFeaturedMovie`);
+      const rand = Math.floor(Math.random() * data.results.length);
+      setMovie(data.results[rand]);
+    };
+    getAMovie();
+  }, []);
+
+  const truncate = (str, n) => {
+    return str.length > n ? str.substr(0, n - 1) + "..." : str;
+  };
+
+  console.log(movie);
+
   return (
-    <>
-      <div className="Feature-container">
-        <div className="Feature-text">
-          <p>Title</p>
-          <p>Description</p>
+    <header
+      className="Feature-container"
+      style={{
+        backgroundImage: movie
+          ? `url(${IMG_BASE_URL}/${movie.backdrop_path})`
+          : null,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
+    >
+      <div className="Feature-content">
+        <h1 className="Feature-title">{movie ? movie.title : "Title"}</h1>
+
+        <div className="Feature-buttons">
+          <button className="Feature-button">Play</button>
+          <button className="Feature-button">More Info</button>
         </div>
-        <ReactPlayer
-          url="https://www.youtube.com/embed/eUezG5vyj1I?autoplay=1&mute=1&controls=0&enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A8888"
-          className="Feature-video"
-          playing
-          muted
-          config={{
-            youtube: {
-              playerVars: {
-                disablekb: 1,
-                iv_load_policy: 3,
-              },
-            },
-          }}
-        />
 
-        {/* <video
-          src="https://i.imgur.com/7ax74eb.mp4"
-          autoplay=""
-          muted={true}
-          loop={true}
-          preload="auto"
-          playsInline
-          className="Feature-video"
-        ></video> */}
-        <div className="Feature-mask"></div>
-
-        {/* <iframe
-          className="Feature-video"
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/6IAxn9ezBSA?autoplay=1&mute=1&controls=0"
-          title="YouTube video player"
-          frameborder="0"
-          allow="autoplay"
-          // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe> */}
+        <h1 className="Feature-description">
+          {movie ? truncate(movie.overview, 150) : "Description"}
+        </h1>
       </div>
-    </>
+      <div className="Feature-mask"></div>
+    </header>
   );
 };
 

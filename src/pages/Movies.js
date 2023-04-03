@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../components/Header";
+import Navigation from "../components/Navigation";
 import Feature from "../components/Feature";
 import Section from "../components/Section";
 
@@ -16,11 +16,18 @@ const Movies = () => {
   console.log(genres);
   return (
     <>
-      <Header />
+      <Navigation />
       <Feature />
+      <Section
+        genre={{ name: "Netflixy Originals" }}
+        isLarge
+        functionName="getOriginal"
+      />
       {genres.length === 0
         ? null
-        : genres.map((genre) => <Section key={genre.id} genre={genre} />)}
+        : genres.map((genre) => (
+            <Section key={genre.id} genre={genre} functionName="getMovies" />
+          ))}
     </>
   );
 };

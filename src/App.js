@@ -1,29 +1,36 @@
 import "./App.css";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Movies from "./pages/Movies";
-import Tvs from "./pages/Tvs";
+import Navigation from "./components/Navigation";
+import Feature from "./components/Feature";
+import Section from "./components/Section";
 
 function App() {
-  const [msg, setMsg] = useState(null);
+  const [genres, setGenres] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const { data } = await axios.get("/.netlify/functions/getGenres");
-  //     // setMsg(data.message);
-  //     console.log(data);
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const getGenres = async () => {
+      const { data } = await axios.get("/.netlify/functions/getMovieGenres");
+      setGenres(data.genres);
+    };
+    getGenres();
+  }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/movies" element={<Movies />} />
-      <Route path="/tvs" element={<Tvs />} />
-    </Routes>
+    <>
+      <Navigation />
+      <Feature />
+      <Section
+        genre={{ name: "Netflixy Originals", id: 213 }}
+        isLarge
+        functionName="getOriginal"
+      />
+      {genres.length === 0
+        ? null
+        : genres.map((genre) => (
+            <Section key={genre.id} genre={genre} functionName="getMovies" />
+          ))}
+    </>
   );
 }
 

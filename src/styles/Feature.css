@@ -1,33 +1,69 @@
 .Feature-container {
-  width: 100%;
-  height: 80vh;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-}
-
-.Feature-text {
+  color: white;
+  object-fit: contain;
+  height: 600px;
   position: absolute;
-  left: 3rem;
-  bottom: 50%;
-  z-index: 999;
+  top: 0;
+  z-index: -1;
+  width: 100%;
 }
 
-.Feature-video {
-  width: 120% !important;
-  height: 100% !important;
-  object-fit: cover !important;
+.Feature-content {
+  margin-left: 30px;
+  padding-top: 140px;
+  height: 200px;
+}
+
+.Feature-title {
+  font-size: 3rem;
+  font-weight: 800;
+  padding-bottom: 0.3rem;
+  max-width: 400px;
+}
+
+.Feature-description {
+  width: 45rem;
+  line-height: 1.3;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  max-width: 360px;
+  height: 80px;
+}
+
+.Feature-button {
+  cursor: pointer;
+  color: white;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding: 0.5rem 2rem;
+  margin-right: 1rem;
+  background-color: rgba(51, 51, 51, 0.5);
+}
+
+.Feature-button:hover {
+  color: black;
+  background-color: #e6e6e6;
+  transition: all 0.2ms;
 }
 
 .Feature-mask {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   z-index: 700;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
+  height: 100%; */
+  height: 17rem;
+  /* background: linear-gradient(
     rgba(255, 255, 255, 0) 60%,
     rgba(0, 0, 0, 1) 100%
+  ); */
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #000
   );
 }
