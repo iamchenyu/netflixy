@@ -6,7 +6,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 exports.handler = async () => {
   try {
     const { data } = await axios.get(
-      `${BASE_URL}/discover/movie?api_key=${process.env.TMDB_API_KEY}`
+      `${BASE_URL}/trending/movie/week?api_key=${process.env.TMDB_API_KEY}`
     );
 
     return {

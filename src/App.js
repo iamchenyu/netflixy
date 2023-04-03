@@ -21,9 +21,9 @@ function App() {
       <Navigation />
       <Feature />
       <Section
-        genre={{ name: "Netflixy Originals", id: 213 }}
+        genre={{ name: "Netflixy Trending" }}
         isLarge
-        functionName="getOriginal"
+        functionName="getTrending"
       />
       {genres.length === 0
         ? null
