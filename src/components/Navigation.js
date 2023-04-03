@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import "../styles/Navigation.css";
 
 const Navigation = () => {
@@ -20,16 +19,16 @@ const Navigation = () => {
 
   return (
     <div className="Navigation" style={{ background: isShown ? "black" : "" }}>
-      <Link to="/" style={{ display: "contents" }}>
+      <a href="/" style={{ display: "contents" }}>
         <img
           src="/images/logo.png"
           alt="netflixy app logo"
           className="Navigation-logo"
         />
-      </Link>
+      </a>
       <div className="Navigation-menu">
-        <Link to="/movies">Movies</Link>
-        <Link to="/tvs">Tvs</Link>
+        <a href="/movies">Movies</a>
+        <a href="/tvs">Tvs</a>
       </div>
       <img
         src="/images/avatar.jpeg"
