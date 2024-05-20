@@ -5,7 +5,6 @@ exports.handler = async (event, context) => {
   try {
     const { id } = event.queryStringParameters;
     const data = await movieTrailer(null, {
-      id: true,
       apiKey: process.env.TMDB_API_KEY,
       tmdbId: id,
     });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Section.css";
 import axios from "axios";
-import YouTube from "react-youtube";
+import ReactPlayer from "react-player/youtube";
 
 const Section = ({ genre, isLarge, functionName }) => {
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original";
@@ -56,12 +56,7 @@ const Section = ({ genre, isLarge, functionName }) => {
               />
             ))}
         </div>
-        {trailer && (
-          <YouTube
-            videoId={trailer}
-            opts={{ height: "500", width: "100%", playerVars: { autoplay: 1 } }}
-          />
-        )}
+        {trailer && <ReactPlayer url={trailer} playing={true} muted={true} />}
       </div>
     </>
   );
